@@ -1,0 +1,7 @@
+.idea
+build
+.gradle
+sliderDB
+gradle
+Agilites_test.iml
+derby.log

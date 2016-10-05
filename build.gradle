@@ -1,0 +1,31 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.testng:testng:6.8.21"
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.1'
+}
+test {
+    useTestNG {
+        suites 'src/test/resources/suite.xml'
+        useDefaultListeners = true
+    }
+}
+
+
+
