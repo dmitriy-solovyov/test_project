@@ -25,6 +25,9 @@ test {
         suites 'src/test/resources/suite.xml'
         useDefaultListeners = true
     }
+    afterTest { test, result ->
+        println "Executing test ${test.name} [${test.className}] with result: ${result.resultType}"
+    }
 }
 
 
