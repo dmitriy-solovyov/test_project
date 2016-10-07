@@ -68,6 +68,8 @@ public class MainTest {
         page.doReset();
         page.enterAmount("100");
         page.doPayment();
+        page.pause(1);
+
         Assert.assertEquals(page.getCurrentBalance(), "100", "Current balance has incorrect value");
     }
 
@@ -126,6 +128,39 @@ public class MainTest {
         page.doPurchase();
 
         Assert.assertEquals(page.getCurrentBalance(), "200.55");
+    }
+
+    @Test(priority = 8)
+    public void enterIncorrectAmountValue(){
+        page.doReset();
+        page.enterAmount("test string");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount("@#$%^&;.?,>|\\/№\"!()_{}[<~");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount(" ");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount(null);
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount("NaN");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount("Null");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
+        page.enterAmount("Infinity");
+        page.doPayment();
+        Assert.assertEquals(page.getCurrentBalance(), "0");
+
     }
 
     @AfterSuite

@@ -147,4 +147,12 @@ public class Page {
     public boolean isTariffUnavailableCostPresent(){
         return driver.findElement(tariffUnavailableCost).isDisplayed();
     }
+
+    public void pause(int seconds){
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
