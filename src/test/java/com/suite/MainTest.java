@@ -33,8 +33,10 @@ public class MainTest {
         page = new Page(driver);
     }
 
-    @Test
+    @Test(priority = 0)
     public void checkElementsOnPage(){
+        page.doReset();
+
         Assert.assertTrue(page.isAmountElementPresent(), "Amount element not found");
         Assert.assertTrue(page.isCurrentBalancePresent(), "Current Balance element not found");
         Assert.assertTrue(page.isDoPaymentButtonPresent(), "DoPayment Button not found");
@@ -52,7 +54,6 @@ public class MainTest {
         Assert.assertTrue(page.isTariffUnavailableSpeedPresent(), "TariffUnavailableSpeed element not found");
         Assert.assertTrue(page.isTariffUnavailableTimePresent(), "TariffUnavailableTime element not found");
 
-        page.doReset();
     }
 
     @Test(priority = 1, dataProviderClass = PlansDataProvider.class, dataProvider = "plan")
